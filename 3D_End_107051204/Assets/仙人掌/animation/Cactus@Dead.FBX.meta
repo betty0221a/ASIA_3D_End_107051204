@@ -195,7 +195,12 @@ ModelImporter:
   - first:
       137: 13700000
     second: body_mesh
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cactus
+    second: {fileID: 2100000, guid: 4def8fc18667a7844a2a2c3ca45ebbfb, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -226,7 +231,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.018
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -273,7 +278,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.018
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
