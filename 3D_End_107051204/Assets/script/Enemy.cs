@@ -52,6 +52,8 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawRay(atkPoint.position, atkPoint.forward * atkLength);
     }
     private RaycastHit hit;
+
+    public float hp = 100;
        
 
     /// <summary>
@@ -81,10 +83,34 @@ public class Enemy : MonoBehaviour
             
         }
     }
+
     /// <summary>
-    /// 追蹤
+    /// 受傷
     /// </summary>
-    private void Track()
+    public void Damage(float Damage)
+
+
+    {
+        hp -= Damage;
+        ani.SetTrigger("受傷觸發");
+
+        if (hp <= 0) Dead();
+
+
+     }      
+        
+
+        private void Dead()
+        {
+        nav.isStopped = true;
+        enabled = false;
+        ani.SetBool("死亡開關", true);
+           
+        }
+        /// <summary>
+        /// 追蹤
+        /// </summary>
+        private void Track()
     {
         nav.SetDestination(player.position);
         ani.SetBool("走路開關", nav.remainingDistance > stopDistance);
