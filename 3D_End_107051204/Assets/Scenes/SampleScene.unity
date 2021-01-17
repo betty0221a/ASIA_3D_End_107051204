@@ -584,7 +584,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1.3761e-41, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 5.689e-42, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -885,6 +885,7 @@ MonoBehaviour:
   textName: {fileID: 117463821}
   interval: 0.05
   playerInArea: 0
+  state: 2
 --- !u!136 &1577174882
 CapsuleCollider:
   m_ObjectHideFlags: 0

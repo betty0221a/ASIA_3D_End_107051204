@@ -19,6 +19,12 @@ public class NPC : MonoBehaviour
 
 
     public bool playerInArea;
+
+    public enum NPCstate
+    {
+        FirstDialogue, Missioning, Finish
+    }
+     public NPCstate state = NPCstate.FirstDialogue;
     private void OnTriggerEnter(Collider other)
     {
         if (other.name == "狗狗")
@@ -52,10 +58,28 @@ public class NPC : MonoBehaviour
 
         dialogue.SetActive(true);
         textContent.text = "";
-        for (int i = 0; i < deta.dialogueA.Length; i++)
+        textName.text = name;
+
+        string dialogueString = deta.dialogueB;
+
+        switch (state)
+        {
+            case NPCstate.FirstDialogue:
+                dialogueString = deta.dialogueA;
+                break;
+            case NPCstate.Missioning:
+                dialogueString = deta.dialogueB;
+                break;
+            case NPCstate.Finish:
+                dialogueString = deta.dialogueC;
+                break;
+        }
+           
+
+        for (int i = 0; i < dialogueString.Length; i++)
         {
             // print(deta.dialogueA[i]);
-            textContent.text += deta.dialogueA[i] + "";        
+            textContent.text += dialogueString[i] + "";        
             yield return new WaitForSeconds(interval);
         }
     }
