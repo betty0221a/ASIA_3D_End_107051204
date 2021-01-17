@@ -10,6 +10,14 @@ public class Enemy : MonoBehaviour
     public float stopDistance = 2.5f;
     [Header("攻擊冷卻時間"), Range(0, 50)]
     public float cd = 2.5f;
+    [Header("攻擊中心點")]
+    public Transform atkPoint;
+    [Header("攻擊長度"),Range(0f, 5f)]
+    public float atkLength;
+    [Header("攻擊力"), Range(0, 500)]
+    public float atk = 30;
+
+
 
     private Transform player;
     private NavMeshAgent nav;
@@ -36,6 +44,19 @@ public class Enemy : MonoBehaviour
         Attack();
     }
 
+
+    private void OnDrawGizmos()
+      
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(atkPoint.position, atkPoint.forward * atkLength);
+    }
+    private RaycastHit hit;
+       
+
+    /// <summary>
+    /// 攻擊
+    /// </summary>
     private void Attack()
     {
         if(nav.remainingDistance < stopDistance)
@@ -47,9 +68,15 @@ public class Enemy : MonoBehaviour
 
             transform.LookAt(player);
             if(timer >= cd)
-                {
+            {
                 ani.SetTrigger("攻擊觸發");
                 timer = 0;
+
+
+                if (Physics.Raycast(atkPoint.position, atkPoint.forward, out hit, atkLength, 1 << 8)) 
+                {
+                    hit.collider.GetComponent<player>().Damage(atk);
+                }
             }
             
         }
